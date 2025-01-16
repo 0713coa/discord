@@ -1,7 +1,6 @@
 from flask import Flask
 from threading import Thread
 import os
-import sys
 
 app = Flask('')
 
@@ -9,12 +8,9 @@ app = Flask('')
 def home():
     return "Server is running!"
 
+# ลบการใช้ app.run() เพราะ gunicorn จะจัดการให้เอง
 def run():
-    try:
-        app.run(host="0.0.0.0", port=int(os.getenv("PORT", 10000)))
-    except Exception as e:
-        print(f"Error: {e}")
-        sys.exit(1)  # ปิดแอปถ้ามีข้อผิดพลาด
+    pass
 
 def server_on():
     t = Thread(target=run)
